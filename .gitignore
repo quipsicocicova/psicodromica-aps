@@ -1,0 +1,26 @@
+# Development dependencies and generated test output
+node_modules/
+artifacts/
+playwright-report/
+test-results/
+
+# Offline downloads and backups are distributed separately
+*.zip
+*.tar
+*.tar.gz
+*.bak
+backups/
+
+# Private reference uploader and private input material
+scripts/reference-upload.mjs
+reference-uploads/
+uploads/
+
+# Local configuration / credentials / logs
+.env
+.env.*
+!.env.example
+*.log
+*.pem
+*.key
+.DS_Store

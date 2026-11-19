@@ -1,0 +1,90 @@
+/* The introductory story is independent of the shared multipage layout. */
+.narrative.story{height:850svh}
+.narrative .story-track{width:800vw}
+.narrative .scene-content{width:43%;max-width:660px;margin-left:7%;padding-top:45px}
+.narrative .scene h1,.narrative .scene h2{font-size:clamp(39px,4.25vw,68px);line-height:1.13;letter-spacing:-.045em;font-weight:450;max-width:100%}
+.narrative .scene[data-scene="1"] h2{font-size:clamp(48px,5.6vw,84px)}
+.narrative .scene[data-scene="7"] h2{font-size:clamp(40px,4.8vw,75px);letter-spacing:-.055em}
+.narrative .chapter-label{font-size:12px;margin-bottom:26px;letter-spacing:1px}
+.narrative .brain-phrases{margin-top:25px;min-height:88px}
+.narrative .brain-phrases p{font-size:clamp(16px,1.45vw,22px);line-height:1.6;margin:0 0 10px;opacity:1}
+.narrative .brain-phrases p em{color:var(--orange);font-weight:500}
+.narrative .begin{margin-top:20px}
+.narrative .closing-tagline{font-size:clamp(21px,2.25vw,35px);line-height:1.4;margin-top:27px;letter-spacing:-.7px;color:var(--ice)}
+.narrative .closing-tagline em{color:var(--orange);font-weight:450}
+.narrative .scene-word{bottom:66px;font-size:15vw;opacity:.65}
+.narrative .drawing{width:51%;right:0;top:155px;height:calc(100% - 285px)}
+.narrative .drawing-note{font-size:11px;top:8px;right:10%}
+.narrative .drawing-footer{font-size:10px;line-height:1.6;bottom:-12px;left:10%;right:10%;text-align:center;justify-content:center;letter-spacing:.6px}
+.narrative #morph-line{stroke-width:2;opacity:1;filter:drop-shadow(0 0 7px #ff85591a)}
+.narrative .story-noise{opacity:.035}
+.narrative .art-guides{opacity:.17}
+.story-header .header-caption{font-size:12px}
+.narrative .story-topline{font-size:12px;top:118px;justify-content:flex-end}
+.narrative #gear-assembly{transform-box:view-box;transform-origin:384px 318px}
+.narrative #gear-bore{stroke:var(--orange);stroke-width:2;fill:none;opacity:0}
+.narrative .scene-closing h2 .aps{font-size:clamp(12px,1.3vw,18px)}
+.narrative .story-topline>span:last-child{font-size:12px}
+.narrative .chapters{gap:9px}
+.narrative .chapters button{gap:6px;font-size:12px;padding:12px 0;min-width:35px;min-height:42px}
+.narrative .chapters i{width:15px}
+.narrative .scroll-cue{font-size:11px}
+.narrative .story-controls{bottom:25px;gap:20px}
+@media(min-width:1700px){.narrative .drawing{width:53%;right:0}.narrative .scene-content{width:41%;margin-left:7%}.narrative .drawing-footer{font-size:12px}.narrative .chapters{gap:15px}.narrative .chapters i{width:20px}}
+@media(max-width:1100px){.narrative .scene-content{width:43%;margin-left:6%}.narrative .scene h1,.narrative .scene h2{font-size:4.4vw}.narrative .scene[data-scene="7"] h2{font-size:4.8vw}.narrative .drawing{width:51%}.narrative .scroll-cue{font-size:10px}.narrative .chapters{gap:5px}.narrative .chapters button{font-size:11px;min-width:30px;gap:4px}.narrative .chapters i{width:10px}.narrative .drawing-footer{font-size:10px}}
+@media(max-height:760px) and (min-width:761px){.narrative .story-topline{top:98px}.narrative .scene-content{padding-top:35px}.narrative .scene h1,.narrative .scene h2{font-size:clamp(33px,3.8vw,58px)}.narrative .chapter-label{margin-bottom:16px}.narrative .brain-phrases{margin-top:16px;min-height:65px}.narrative .brain-phrases p{font-size:17px;margin-bottom:7px}.narrative .begin{margin-top:12px}.narrative .drawing{top:120px;height:calc(100% - 230px)}.narrative .drawing-note{font-size:10px}.narrative .story-controls{bottom:16px}}
+@media(max-width:760px){
+  .narrative.story{height:800svh}
+  .narrative .story-topline{top:101px;font-size:10px;line-height:1.4;gap:15px}
+  .narrative .story-topline>span:last-child{font-size:10px;max-width:140px}
+  .narrative .scene{align-items:flex-start}
+  .narrative .scene-content{margin:0;width:100%;max-width:none;padding:154px 7% 0}
+  .narrative .scene h1,.narrative .scene h2{font-size:clamp(27px,8.2vw,43px);line-height:1.13;max-width:100%;letter-spacing:-.04em}
+  .narrative .scene[data-scene="1"] h2{font-size:10vw}
+  .narrative .scene[data-scene="7"] h2{font-size:10.8vw}
+  .narrative .chapter-label{font-size:11px;letter-spacing:.7px;margin-bottom:18px}
+  .narrative .brain-phrases{margin-top:18px;min-height:68px}
+  .narrative .brain-phrases p{font-size:15px;line-height:1.5;margin:0 0 9px}
+  .narrative .begin{margin-top:10px;font-size:12px;min-height:40px;padding:10px 15px}
+  .narrative .closing-tagline{font-size:22px;line-height:1.4;margin-top:22px}
+  .narrative .drawing{width:92%;right:0;top:auto;bottom:126px;height:31%}
+  .narrative .drawing-note{display:none}
+  .narrative .drawing-footer{font-size:10px;bottom:-7px;line-height:1.5;left:8%;right:8%;letter-spacing:.1px}
+  .narrative .scene-word{bottom:120px;font-size:22vw;opacity:.5}
+  .narrative .story-controls{left:5%;right:5%;bottom:15px;gap:8px;row-gap:8px;justify-content:space-between;flex-wrap:wrap}
+  .narrative .chapters{order:1;width:100%;justify-content:space-between;gap:0}
+  .narrative .chapters button{min-width:28px;min-height:32px;font-size:11px;padding:7px 0;gap:3px}
+  .narrative .chapters i{width:9px}
+  .narrative .scroll-cue{order:2;width:auto;max-width:70%;font-size:10px;margin:0;gap:6px;justify-content:flex-start}
+  .narrative .arrow-controls{order:3;gap:6px}
+  .narrative .arrow-controls button{width:34px;height:32px}
+}
+@media(max-width:760px) and (max-height:740px){
+  .narrative .story-topline{top:94px;font-size:10px}.narrative .story-topline>span:last-child{font-size:10px}
+  .narrative .scene-content{padding-top:134px}
+  .narrative .chapter-label{font-size:10px;margin-bottom:12px}
+  .narrative .scene h1,.narrative .scene h2{font-size:clamp(25px,7.3vw,36px);line-height:1.1}
+  .narrative .brain-phrases{margin-top:13px;min-height:57px}
+  .narrative .brain-phrases p{font-size:13px;line-height:1.45;margin-bottom:7px}
+  .narrative .scene[data-scene="0"] .begin{display:none}
+  .narrative .closing-tagline{font-size:19px;margin-top:15px}
+  .narrative .drawing{height:29%;bottom:103px;width:82%;right:1%}
+  .narrative .drawing-footer{display:none}
+  .narrative .story-controls{bottom:10px;row-gap:3px}
+  .narrative .scene-word{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .narrative.story{height:auto}
+  .narrative .story-sticky{height:max(850px,100svh);position:relative}
+  .narrative .story-track{transform:none!important}
+  .narrative .scene{display:none;position:absolute}
+  .narrative .scene.is-current{display:flex}
+  .narrative .scene-content{padding-top:60px}
+  .narrative .drawing{height:550px;top:180px;bottom:auto}
+  .narrative .scroll-cue{visibility:hidden}
+}
+@media(prefers-reduced-motion:reduce) and (max-width:760px){
+  .narrative .story-sticky{height:max(850px,100svh)}
+  .narrative .scene-content{padding:154px 7% 0}
+  .narrative .drawing{top:auto;bottom:130px;height:290px}
+}

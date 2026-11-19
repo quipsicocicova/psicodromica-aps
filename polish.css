@@ -1,0 +1,50 @@
+/* A genuinely small tracking increase: +.005em over each existing title. */
+.narrative .scene h1,.narrative .scene h2{letter-spacing:-.04em}
+.narrative .scene[data-scene="7"] h2{letter-spacing:-.05em}
+.arrival h2{letter-spacing:-.06em}
+.home-paths h2,.page-details h2,.manifesto>h2{letter-spacing:-.04em}
+.path-grid h3{letter-spacing:-.035em}
+.inner-page h1{letter-spacing:-.05em}
+.membership h1,.team-section h2,.article-reading h1,.reading-page h1{letter-spacing:-.045em}
+.article-reading h2,.reading-page h2,.team-card h3{letter-spacing:-.025em}
+.value-copy h3{letter-spacing:calc(-1.6px + .005em)}
+.membership-process h2,.editorial-grid h3{letter-spacing:calc(-.9px + .005em)}
+.contact-layout h2{letter-spacing:-.045em}
+.story-header .wordmark>span{transform:translateY(-2px)}
+.arrival-eyebrow{font-size:clamp(15px,1.4vw,20px);line-height:1.6;max-width:650px}
+.narrative .scene .perspective-note{font-size:clamp(14px,1.3vw,18px);line-height:1.6;max-width:460px;margin-top:20px;font-variant-caps:all-small-caps;font-weight:700;letter-spacing:.055em}
+.narrative .closing-tagline{font-size:clamp(19px,1.9vw,30px);max-width:550px}
+.site-nav .site-brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.site-nav .site-brand>span{font-size:inherit;color:inherit;transform:translateY(-2px);white-space:nowrap}
+.site-brand img,.site-symbol{width:44px;height:34px;flex:0 0 44px;object-fit:contain}
+.site-brand img{filter:brightness(0)}
+.site-symbol{fill:currentColor}
+.table-illustration>.animated-table .table-thread{animation:none;stroke-dasharray:none;stroke-dashoffset:0}
+.animated-table[data-animation-state="paused"] .table-core-pulse{animation-play-state:paused}
+.manifesto>h2{margin-bottom:24px}
+.manifesto-intro{max-width:780px;font-size:17px;line-height:1.9;color:var(--soft,var(--ice));margin-bottom:45px}
+.value-row:nth-child(3) .value-art{stroke:var(--ice)}
+.value-row:nth-child(4) .value-art{stroke:var(--orange)}
+/* A plain thread actually morphs, then disappears; no coloured frames remain. */
+.path-grid>a,.path-grid>a+a,.path-grid>a:nth-child(3){position:relative;padding-left:20px;padding-right:20px}
+.path-thread{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;fill:none;stroke:var(--ice);stroke-width:1}
+.path-thread path{vector-effect:non-scaling-stroke;stroke-dasharray:none}
+.path-grid:is([data-thread-state="idle"],[data-thread-state="drawing"]){border-top-color:transparent}
+.path-grid>a:is([data-reveal="pending"],[data-reveal="drawing"]){border-color:transparent}
+.path-grid>a:is([data-reveal="complete"],[data-reveal="static"])>.path-thread{display:none}
+.path-grid>a:is([data-reveal="pending"],[data-reveal="drawing"])>:not(.path-thread){opacity:0;transform:translateY(6px)}
+@media(max-width:760px){
+  .narrative .scene h1,.narrative .scene h2{letter-spacing:-.035em}
+  .narrative .scene[data-scene="7"] h2{letter-spacing:-.05em}
+  .contact-layout h2{letter-spacing:calc(-1.2px + .005em)}
+  .editorial-grid h3{letter-spacing:calc(-.7px + .005em)}
+  .narrative .scene .perspective-note{font-size:13px;line-height:1.5;max-width:340px;margin-top:15px}
+  .manifesto-intro{font-size:15px;margin-bottom:30px}
+  .site-brand img,.site-symbol{width:32px;height:25px;flex-basis:32px}
+  .site-nav .site-brand{gap:7px}
+}
+@media(prefers-reduced-motion:reduce){
+  .narrative .story-track{width:100%}
+  .narrative .scene{left:0;top:0;width:100%}
+  .path-grid>a>:not(.path-thread){opacity:1!important;transform:none!important;clip-path:none!important}
+}

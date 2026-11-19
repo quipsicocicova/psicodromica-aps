@@ -1,0 +1,8 @@
+{
+  "name": "psicodromica-filo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "start": "node server.mjs", "dev": "node server.mjs", "build:geometry": "node scripts/build-geometry.mjs", "build:palettes": "node scripts/build-palettes.mjs", "test:offline": "node offline.test.mjs", "test": "node startup.test.mjs && node test.mjs && node community.test.mjs && node effects.test.mjs && node theme-logo.test.mjs && node polish.test.mjs" },
+  "devDependencies": { "playwright": "^1.65.1" }
+}

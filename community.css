@@ -1,0 +1,93 @@
+/* Manifesto and membership: extensions of the same living thread. */
+.manifesto{padding:20px 7% 65px}
+.manifesto>h2{font-size:clamp(36px,4.7vw,68px);line-height:1.15;letter-spacing:-.045em;font-weight:450;margin:45px 0 55px;max-width:950px}
+.manifesto h2 em,.membership h1 em,.membership h2 em{color:var(--orange)}
+.value-row{display:grid;grid-template-columns:1fr 1fr;gap:65px;align-items:center;padding:40px 0;border-top:1px solid var(--line)}
+.value-row:last-child{border-bottom:1px solid var(--line)}
+.value-copy h3{font-size:clamp(30px,3.5vw,51px);font-weight:450;letter-spacing:-1.6px;line-height:1.1;margin:20px 0}
+.value-copy p{font-size:16px;line-height:1.9;max-width:500px;color:#b7ccd6}
+.value-copy .overline{font-size:12px;color:var(--blue)}
+.value-art{width:100%;height:auto;overflow:visible;stroke:var(--orange);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.value-row:nth-child(2) .value-art{stroke:var(--blue)}
+.value-row:nth-child(3) .value-art{stroke:#d0e4ea}
+.membership{padding:60px 7% 80px;max-width:1500px;margin:auto}
+.membership-intro{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center;margin:30px 0 55px}
+.membership h1{font-size:clamp(45px,5.8vw,87px);line-height:1.12;letter-spacing:-.05em;font-weight:450;margin-bottom:30px}
+.membership-intro p{font-size:16px;line-height:1.9;color:#b7ccd6;max-width:500px}
+.membership-process h2{font-size:32px;font-weight:450;line-height:1.2;letter-spacing:-.9px;margin-bottom:25px}
+.membership-process ol{list-style:none;padding:0;margin:0 0 20px;display:grid;gap:18px}
+.membership-process li{display:grid;grid-template-columns:30px 1fr;gap:15px;font-size:15px;line-height:1.7;color:#c4d7df}
+.membership-process li>span{font:12px/1.9 var(--mono);color:var(--orange)}
+.membership-process>p{font-size:13px;color:var(--blue)}
+.form-notice{border:1px solid #94bbc950;border-left:3px solid var(--cta);background:#172634;padding:22px 25px;margin:30px 0 40px;font-size:14px;line-height:1.8}
+.form-notice strong{font-weight:600;color:var(--ice)}
+.form-notice p{margin-top:8px;color:#b7ccd6;font-size:14px;line-height:1.8;max-width:900px}
+#membership-form{max-width:1000px}
+#membership-form fieldset{border:0;padding:0;margin:0}
+#membership-form legend{font-size:34px;font-weight:450;letter-spacing:-1px;margin-bottom:15px;padding:0}
+.form-hint{font-size:13px;line-height:1.7;color:var(--blue)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:28px 0 35px}
+.form-field{display:flex;flex-direction:column;gap:10px;min-width:0}
+.form-field--wide{grid-column:1/-1}
+.form-field label{font-size:15px;font-weight:500;line-height:1.6}
+.form-field label span{font-size:12px;font-weight:400;color:var(--blue)}
+.form-field input,.form-field select,.form-field textarea{font:16px/1.6 Raleway,Arial,sans-serif;color:var(--ice);background:#172634;border:1px solid #94bbc960;border-radius:5px;padding:12px 14px;width:100%;min-width:0;outline-offset:4px;box-shadow:none}
+.form-field input:focus-visible,.form-field select:focus-visible,.form-field textarea:focus-visible,.form-check input:focus-visible{outline:2px solid var(--cta)}
+.form-field select{color-scheme:dark;min-height:52px}
+.form-field textarea{resize:vertical;min-height:130px;max-height:450px}
+.form-field input:user-invalid,.form-field select:user-invalid{border-color:var(--orange)}
+.form-check{display:grid;grid-template-columns:20px 1fr;gap:14px;align-items:start;font-size:14px;line-height:1.8;max-width:850px;cursor:pointer}
+.form-check input{width:18px;height:18px;margin:4px 0 0;accent-color:var(--cta)}
+.form-privacy{margin:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;font-size:14px;line-height:1.8;color:var(--blue)}
+.form-privacy summary{cursor:pointer;color:var(--ice);font-weight:500;line-height:1.7}
+.form-privacy p{margin-top:15px;max-width:850px}
+.form-submit{display:flex;gap:25px;align-items:center;margin-top:25px}
+.form-submit .pill-link{margin:0;flex-shrink:0}
+.form-submit p{font-size:13px;line-height:1.7;color:var(--blue);max-width:320px}
+.form-submit button:disabled{opacity:.5;cursor:not-allowed}
+.membership-result{max-width:1000px;border:1px solid var(--line);border-top:3px solid var(--cta);padding:35px;margin-top:50px;scroll-margin-top:35px;background:#172634}
+.membership-result[hidden]{display:none}
+.membership-result h2{font-size:40px;font-weight:450;line-height:1.15;letter-spacing:-1.3px;margin:22px 0}
+.membership-result>p{font-size:15px;line-height:1.8;color:#b7ccd6;max-width:750px}
+.membership-result dl{display:grid;grid-template-columns:180px 1fr;gap:15px 25px;border-top:1px solid var(--line);margin:25px 0 0;padding:25px 0 0;font-size:14px;line-height:1.7}
+.membership-result dt{color:var(--blue)}
+.membership-result dd{margin:0;overflow-wrap:anywhere;white-space:pre-wrap}
+.result-actions{display:flex;gap:30px;align-items:center;flex-wrap:wrap;margin-top:25px}
+.result-actions .pill-link{margin:0}
+.text-action{font-size:14px;border-bottom:1px solid var(--blue);padding:7px 0}
+@media(max-width:1050px){.value-row{gap:40px}.membership-intro{gap:40px}.membership-process h2{font-size:28px}.membership-process li{font-size:14px}}
+@media(max-width:760px){
+  .manifesto{padding:0 7% 40px}
+  .manifesto>h2{font-size:35px;letter-spacing:-1.5px;margin:30px 0}
+  .manifesto .section-kicker{flex-direction:column;gap:10px}
+  .manifesto .section-kicker>span:last-child{align-self:flex-start}
+  .value-row{grid-template-columns:1fr;gap:20px;padding:30px 0}
+  .value-copy .overline{font-size:11px}
+  .value-copy h3{font-size:35px;letter-spacing:-1.2px;margin:18px 0}
+  .value-copy p{font-size:15px;line-height:1.8}
+  .value-art{max-width:480px;margin:auto}
+  .membership{padding:35px 7% 55px}
+  .membership-intro{grid-template-columns:1fr;gap:35px;margin:25px 0 35px}
+  .membership h1{font-size:45px;letter-spacing:-2px;margin-bottom:24px}
+  .membership-intro p{font-size:15px}
+  .membership-process h2{font-size:29px;margin-bottom:25px}
+  .membership-process li{font-size:14px;grid-template-columns:25px 1fr;gap:12px}
+  .membership-process>p{font-size:13px}
+  .form-notice{padding:19px;margin:25px 0 32px;font-size:13px}
+  .form-notice p{font-size:13px}
+  #membership-form legend{font-size:30px}
+  .form-grid{grid-template-columns:1fr;gap:24px;margin-top:23px}
+  .form-field--wide{grid-column:auto}
+  .form-field label{font-size:14px}
+  .form-field label span{font-size:12px}
+  .form-submit{flex-direction:column;align-items:flex-start;gap:18px}
+  .form-check{font-size:13px;gap:12px}
+  .form-privacy{font-size:13px}
+  .membership-result{padding:24px 20px}
+  .membership-result h2{font-size:32px}
+  .membership-result>p{font-size:14px}
+  .membership-result dl{grid-template-columns:1fr;gap:4px}
+  .membership-result dd{margin-bottom:14px}
+  .result-actions{gap:20px}
+}
+@media(prefers-reduced-motion:reduce){.value-art path{animation:none!important;transition:none!important}}

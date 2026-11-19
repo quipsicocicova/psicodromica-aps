@@ -1,0 +1,78 @@
+/* Shared palette control. Native buttons remain reachable with Tab and touch. */
+html[data-palette] .palette-picker{
+  display:flex;align-items:center;flex:0 0 auto;flex-wrap:nowrap;gap:4px;
+  width:auto;padding:0;border:0;order:initial;color:var(--ice);
+}
+.palette-picker-label{font:12px/1.4 var(--mono);margin-right:4px;letter-spacing:0}
+html[data-palette] .palette-picker button{
+  display:inline-flex;align-items:center;justify-content:center;position:relative;
+  width:36px;height:44px;min-width:36px;padding:5px;border:1px solid transparent;
+  border-radius:5px;background:transparent;color:var(--ice);box-shadow:none;
+}
+html[data-palette] .palette-picker button:hover{background:var(--deep);border-color:var(--muted)}
+html[data-palette] .palette-picker button[aria-pressed="true"]{border-color:currentColor}
+.palette-picker button[aria-pressed="true"]::after{
+  content:'✓';position:absolute;right:0;bottom:0;font:700 12px/1 Arial,sans-serif;
+  background:var(--night);color:var(--ice);border-radius:2px;padding:1px;
+}
+html[data-palette] .palette-picker button:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.palette-swatch{display:block;width:22px;height:22px;border:1px solid var(--muted);border-radius:50%}
+[data-palette-choice="originale"] .palette-swatch{background:linear-gradient(135deg,#101923 50%,#ff8559 50%)}
+[data-palette-choice="bosco"] .palette-swatch{background:linear-gradient(135deg,#21f5be 50%,#ffdf37 50%)}
+[data-palette-choice="blu-rosso"] .palette-swatch{background:linear-gradient(135deg,#39b6e5 50%,#ff5b63 50%)}
+[data-palette-choice="nero"] .palette-swatch{background:linear-gradient(135deg,#ddb15a 50%,#922b48 50%)}
+html[data-palette] .arrival .palette-picker{color:var(--arrival-ink)}
+html[data-palette] .arrival .palette-picker button{color:inherit}
+html[data-palette] .arrival .palette-picker button:hover{background:var(--arrival-bg);border-color:currentColor}
+html[data-palette] .arrival .palette-picker button[aria-pressed="true"]::after{background:var(--arrival-bg);color:var(--arrival-ink)}
+html[data-palette] .arrival .palette-picker button:focus-visible{outline-color:var(--arrival-accent)}
+html[data-palette] .site-nav{border-color:var(--line)}
+html[data-palette] .site-nav [aria-current="page"]{text-decoration-color:var(--orange)}
+html[data-palette] .arrival .site-nav{border-color:color-mix(in srgb,var(--arrival-ink) 25%,transparent)}
+html[data-palette] .arrival .site-nav>div{border-color:color-mix(in srgb,var(--arrival-ink) 25%,transparent)}
+html[data-palette] .site-nav>.palette-picker{gap:4px}
+/* Internal headers use a light surface, unlike the story header. */
+html[data-palette] .page-header .palette-picker,
+html[data-palette] .page-header .palette-picker button{color:var(--night)}
+html[data-palette] .page-header .palette-picker button:hover{background:var(--ice);border-color:var(--night)}
+html[data-palette] .page-header .palette-picker button[aria-pressed="true"]::after{background:var(--ice);color:var(--night)}
+html[data-palette] .page-header :is(a,button):focus-visible{outline-color:var(--night)}
+html[data-palette] .page-header .site-nav [aria-current="page"]{text-decoration-color:var(--night)}
+html[data-palette] .has-story .header-nav{gap:20px}
+/* Internal pages: replace fixed navy surfaces and blue-grey copy with tokens. */
+html[data-palette] .tables,
+html[data-palette] .inner-page .form-notice,
+html[data-palette] .inner-page .membership-result{background:var(--deep)}
+html[data-palette] :is(.about p,.initiative-text p,.page-details>p,.team-card p,.value-copy p,.membership-intro p,.membership-process li,.form-notice p,.membership-result>p,.article-reading p,.reading-page p){color:var(--soft)}
+html[data-palette] :is(.article-reading .lead,.reading-page .lead){color:var(--ice)}
+html[data-palette] .section-kicker>span:last-child{color:var(--muted)}
+html[data-palette] .inner-page .form-notice{border-color:var(--muted);border-left-color:var(--cta)}
+html[data-palette] .inner-page :is(.form-field input,.form-field select,.form-field textarea){background:var(--deep);color:var(--ice);border-color:var(--muted)}
+html[data-palette] .inner-page :is(input,textarea)::placeholder{color:var(--muted);opacity:1}
+html[data-palette] .inner-page :is(.form-field input,.form-field select,.form-field textarea,.form-check input):focus-visible{outline-color:var(--orange)}
+html[data-palette] .inner-page .form-check input{accent-color:var(--orange)}
+html[data-palette] .inner-page .form-hint,
+html[data-palette] .inner-page .form-field label span,
+html[data-palette] .inner-page .form-submit p{color:var(--muted)}
+/* The editorial surface is intentionally light/accented: keep its ink dark. */
+html[data-palette] .observatory{background:var(--orange);color:var(--night)}
+html[data-palette] .observatory .section-kicker>span:last-child{color:var(--night)}
+html[data-palette] .observatory :is(.section-kicker,.editorial-grid,.editorial-card){border-color:color-mix(in srgb,var(--night) 35%,transparent)}
+html[data-palette] .observatory .read-label{background:var(--night);color:var(--ice)}
+html[data-palette] .observatory .editorial-card:hover .read-label{background:var(--deep);color:var(--ice)}
+html[data-palette] .observatory a:focus-visible{outline-color:var(--night)}
+html[data-palette] .observatory .palette-picker-label{color:inherit}
+@media(min-width:1101px){
+  html[data-palette] .page-header .site-nav{gap:16px}
+  html[data-palette] .page-header .site-nav>div:not(.palette-picker){gap:20px}
+}
+@media(max-width:1100px){
+  html[data-palette] .has-story .header-nav .palette-picker{align-self:flex-start;margin-top:4px}
+}
+@media(max-width:760px){
+  html[data-palette] .site-nav>.palette-picker{order:4;width:100%;padding-top:4px}
+}
+@media(forced-colors:active){
+  html[data-palette] .palette-picker button{border:1px solid ButtonText}
+  html[data-palette] .palette-picker button[aria-pressed="true"]{outline:2px solid Highlight}
+}

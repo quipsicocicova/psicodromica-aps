@@ -1,0 +1,95 @@
+/* Four shared site palettes. Colour only: no layout, typography or motion. */
+:root[data-palette="originale"]{
+  --night:#101923;--deep:#0c141d;--ice:#d0e4ea;--blue:#94bbc9;--orange:#ff8559;
+  --line:#d0e4ea33;--cta:#9cbccc;--cta-hover:#bdd3df;--cta-ink:#142733;
+  --soft:#b7ccd6;--muted:#9fb5c1;--cloud:#94bbc9;--cloud-ink:#101923;
+  --cloud-one:#94bbc9;--cloud-two:#b6d3df;--cloud-three:#76a4b9;
+  --logo-gear:#ff8559;--logo-neural:#94bbc9;
+  --arrival-bg:#d0e4ea;--arrival-ink:#101923;--arrival-accent:#aa4329;
+  --light:#f5d45e;--spark:#ffe6a0;--window:#f7dfaa;--core:#8ec6e6;--glint:#d0e4ea;
+  --ghost:#94bbc91a;--header:#101923f5;--noise-filter:none;
+  --logo-filter:grayscale(1) brightness(0) invert(93%) sepia(10%) saturate(450%) hue-rotate(153deg);
+  color-scheme:dark;
+}
+:root[data-palette="bosco"]{
+  --night:#0d241f;--deep:#081a16;--ice:#e5fff0;--blue:#89d9b7;--orange:#ffdf37;
+  --line:#b0ffda33;--cta:#21f5be;--cta-hover:#7bffd8;--cta-ink:#063e2e;
+  --soft:#bee3cf;--muted:#a3d8bf;--cloud:#16eec0;--cloud-ink:#052d23;
+  --cloud-one:#16eec0;--cloud-two:#ffdf37;--cloud-three:#89d9b7;
+  --logo-gear:#ffdf37;--logo-neural:#21f5be;
+  --arrival-bg:#dff7e9;--arrival-ink:#0d241f;--arrival-accent:#785e00;
+  --light:#ffe33f;--spark:#fff4a0;--window:#ffe678;--core:#16eec0;--glint:#f4fff7;
+  --ghost:#60ffc51a;--header:#0d241ff5;--noise-filter:none;
+  --logo-filter:grayscale(1) brightness(0) invert(94%) sepia(10%) saturate(400%) hue-rotate(84deg);
+  color-scheme:dark;
+}
+:root[data-palette="blu-rosso"]{
+  --night:#101923;--deep:#0c141d;--ice:#e4edf3;--blue:#39b6e5;--orange:#ff5b63;
+  --line:#c7e6f333;--cta:#37b7e5;--cta-hover:#84d8f3;--cta-ink:#0b2839;
+  --soft:#bed0dc;--muted:#9fbccc;--cloud:#39b6e5;--cloud-ink:#101923;
+  --cloud-one:#39b6e5;--cloud-two:#ff5b63;--cloud-three:#84d8f3;
+  --logo-gear:#ff5b63;--logo-neural:#39b6e5;
+  --arrival-bg:#dcecf3;--arrival-ink:#101923;--arrival-accent:#b52d42;
+  --light:#ff6c70;--spark:#ffc0b6;--window:#ff9a95;--core:#39b6e5;--glint:#f4fbff;
+  --ghost:#67caf01a;--header:#101923f5;--noise-filter:none;
+  --logo-filter:grayscale(1) brightness(0) invert(93%) sepia(10%) saturate(450%) hue-rotate(153deg);
+  color-scheme:dark;
+}
+:root[data-palette="nero"]{
+  --night:#0b090a;--deep:#050405;--ice:#f5ede2;--blue:#c3a6ac;--orange:#ddb15a;
+  --line:#f5d8c333;--cta:#922b48;--cta-hover:#ab3d5d;--cta-ink:#fff4e3;
+  --soft:#d4c1bb;--muted:#c2a9a7;--cloud:#9a3651;--cloud-ink:#fff1dc;
+  --cloud-one:#922b48;--cloud-two:#773146;--cloud-three:#63303f;
+  --logo-gear:#ddb15a;--logo-neural:#c05b78;
+  --arrival-bg:#171113;--arrival-ink:#f5ede2;--arrival-accent:#ddb15a;
+  --light:#e5b94f;--spark:#ffe09a;--window:#ddb15a;--core:#c05b78;--glint:#fff3db;
+  --ghost:#cda2931a;--header:#0b090af5;--noise-filter:none;
+  --logo-filter:grayscale(1) brightness(0) invert(94%) sepia(13%) saturate(470%) hue-rotate(335deg);
+  color-scheme:dark;
+}
+/* Override the few original colours that precede the shared design tokens. */
+html[data-palette] body.has-story .story-header{background:var(--header)}
+html[data-palette] .wordmark img{filter:var(--logo-filter)}
+html[data-palette] .narrative .scene p{color:var(--soft)}
+html[data-palette] .narrative .closing-tagline{color:var(--ice)}
+html[data-palette] .story-noise{filter:var(--noise-filter)}
+html[data-palette] .horizon{background:linear-gradient(90deg,transparent,var(--line),transparent)}
+html[data-palette] .scene-word{-webkit-text-stroke-color:var(--ghost)}
+html[data-palette] .art-guides{stroke:var(--blue)}
+html[data-palette] .scroll-cue,html[data-palette] .chapters button{color:var(--muted)}
+html[data-palette] .chapters button.active,html[data-palette] .chapters button:hover{color:var(--orange)}
+html[data-palette] .chapters i{background:var(--line)}
+html[data-palette] .chapters button.active i{background:var(--orange)}
+html[data-palette] .mouse-icon{border-color:var(--line)}
+html[data-palette] .mouse-icon::after{background:var(--orange)}
+html[data-palette] .journey-progress{background:var(--line)}
+html[data-palette] #halo stop{stop-color:var(--orange)}
+html[data-palette="nero"] #halo stop{stop-color:var(--cloud)}
+html[data-palette] #gear-light stop{stop-color:var(--light)}
+html[data-palette] #line-tip,html[data-palette] #eye-detail circle:first-child{fill:var(--orange)}
+html[data-palette] #eye-detail circle:last-child{fill:var(--glint)}
+html[data-palette="nero"] #eye-detail circle:first-child{fill:var(--cloud)}
+html[data-palette] .discipline-bubble .bubble-cloud{fill:var(--cloud)}
+html[data-palette] .discipline-bubble:nth-child(1) .bubble-cloud{fill:var(--cloud-one)}
+html[data-palette] .discipline-bubble:nth-child(2) .bubble-cloud{fill:var(--cloud-two)}
+html[data-palette] .discipline-bubble:nth-child(3) .bubble-cloud{fill:var(--cloud-three)}
+html[data-palette] .story-logo path:first-of-type{fill:var(--logo-gear)}
+html[data-palette] .story-logo path:last-of-type{fill:var(--logo-neural)}
+html[data-palette] .bubble-symbol{stroke:var(--cloud-ink)}
+html[data-palette] .discipline-bubble .psi-symbol{fill:var(--cloud-ink)}
+html[data-palette] .table-core-halo,html[data-palette] .table-core-dot{fill:var(--core)}
+html[data-palette] #city-windows rect{fill:var(--window);filter:drop-shadow(0 0 4px color-mix(in srgb,var(--light) 53%,transparent))}
+html[data-palette] #city-windows rect:nth-child(4n){fill:var(--cloud)}
+html[data-palette] .gear-spark{stroke:var(--spark);filter:drop-shadow(0 0 3px var(--light))}
+html[data-palette] .arrival{background:var(--arrival-bg);color:var(--arrival-ink)}
+html[data-palette] .arrival h2 em{color:var(--arrival-accent)}
+html[data-palette] .arrival-mark{stroke:var(--arrival-accent)}
+html[data-palette] .arrival-index{color:var(--arrival-ink)}
+html[data-palette] .bulb-glow{fill:var(--light)}
+html[data-palette] .bulb-rays{stroke:var(--light)}
+html[data-palette] .path-grid p,html[data-palette] footer .footer-description{color:var(--muted)}
+html[data-palette] dialog{border-color:var(--line);box-shadow:8px 8px 0 color-mix(in srgb,var(--orange) 38%,transparent)}
+html[data-palette] dialog::backdrop{background:color-mix(in srgb,var(--deep) 80%,transparent)}
+html[data-palette] dialog p{color:var(--soft)}
+html[data-palette] .dialog-note,html[data-palette] .dialog-options button:hover,html[data-palette] .dialog-jump:hover{background:var(--deep)}
+@media(max-width:760px){html[data-palette] dialog{box-shadow:5px 5px 0 color-mix(in srgb,var(--orange) 38%,transparent)}}

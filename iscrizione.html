@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <script src="theme.js?v=4"></script>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101923">
+  <meta name="description" content="Richiedi l’iscrizione a Psicodromica APS. L’associazione ti ricontatterà per confermare l’iscrizione.">
+  <title>Iscrizione — Psicodromica APS</title>
+  <link rel="icon" href="assets/logo-psicodromica.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="refinements.css?v=5"><link rel="stylesheet" href="community.css?v=3">
+  <link rel="stylesheet" href="experience.css?v=8"><script defer src="assets/thread-geometry.js?v=8"></script><script defer src="app.js?v=5"></script><script defer src="membership.js?v=3"></script>
+  <link rel="stylesheet" href="palette-variants.css?v=4">
+  <link rel="stylesheet" href="theme.css?v=3">
+  <link rel="stylesheet" href="polish.css?v=2">
+</head>
+<body class="inner-page">
+  <a class="skip-access" href="#contenuto">Salta al contenuto</a>
+  <header class="page-header"><nav class="site-nav" aria-label="Navigazione del sito"><a class="site-brand" href="il-filo-animato.html#associazione"><img src="assets/logo-psicodromica.svg" alt="" width="44" height="34"><span>psicodromica<sup class="aps">APS</sup></span></a><div><a href="about.html">About</a><a href="tavole-rotonde.html">Tavole Rotonde</a><a href="osservatorio.html">Osservatorio</a><a href="iscrizione.html" aria-current="page">Iscrizione</a></div><a class="replay" href="il-filo-animato.html#inizio">Segui il filo <span class="thread-icon" aria-hidden="true"></span></a></nav></header>
+  <main id="contenuto">
+    <section class="membership" aria-labelledby="signup-title">
+      <span class="overline">ISCRIZIONE / UN NUOVO PUNTO DI VISTA</span>
+      <div class="membership-intro"><div><h1 id="signup-title">Il prossimo filo<br>potresti essere <em>tu</em>.</h1><p>Entra in relazione con Psicodromica<sup class="aps">APS</sup>. Non serve avere tutte le risposte: basta la disponibilità a cercarle insieme.</p></div><div class="membership-process"><h2>Una richiesta.<br><em>Un primo incontro.</em></h2><ol><li><span>01</span> Compili il modulo con i tuoi recapiti.</li><li><span>02</span> Ti ricontattiamo per conoscerci e darti le informazioni sull’adesione.</li><li><span>03</span> Confermiamo insieme la tua iscrizione.</li></ol><p>La richiesta non comporta l’iscrizione automatica né alcun pagamento.</p></div></div>
+      <form id="membership-form" aria-describedby="form-data-hint form-local-hint" method="post">
+        <fieldset><legend>Facciamo conoscenza.</legend><p class="form-hint">I campi con * sono obbligatori.</p><div class="form-grid">
+          <div class="form-field"><label for="first-name">Nome *</label><input id="first-name" name="nome" autocomplete="given-name" maxlength="80" required></div>
+          <div class="form-field"><label for="last-name">Cognome *</label><input id="last-name" name="cognome" autocomplete="family-name" maxlength="80" required></div>
+          <div class="form-field"><label for="email">Email *</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
+          <div class="form-field"><label for="discipline">Disciplina o ambito di interesse <span>(facoltativo)</span></label><select id="discipline" name="ambito"><option value="">Scegli un ambito</option>Psichiatria</option><option>Psicologia</option><option>Neuroscienze</option><option>Filosofia</option><option>Sociologia</option><option>Pedagogia</option><option>Altro ambito</option><option>Interesse personale</option></select></div>
+          <div class="form-field form-field--wide"><label for="motivation">Che cosa ti avvicina al progetto? <span>(facoltativo)</span></label><textarea id="motivation" name="motivazione" rows="4" maxlength="1200" aria-describedby="form-data-hint"></textarea><p class="form-hint" id="form-data-hint">Raccontaci i tuoi interessi, non la tua storia clinica. Non inserire dati sulla salute o altre informazioni sensibili.</p></div>
+        </div></fieldset>
+        <label class="form-check"><input type="checkbox" name="conferma" required><span>Ho compreso che questa è una richiesta e che l’associazione mi ricontatterà per confermare l’iscrizione. *</span></label>
+        <details class="form-privacy"><summary>Come funziona questa anteprima e come vengono gestiti i dati</summary><p>I dati restano nei campi del browser e non vengono inviati a un server, salvati in cookie o memorizzati nel browser. Se scegli di scaricare la richiesta, il file viene creato sul tuo dispositivo. Chiudendo o ricaricando la pagina, il sito non conserva una copia dei dati inseriti.</p><p>Prima di attivare l’invio saranno pubblicati l’informativa ufficiale dell’associazione e i dettagli su finalità, titolare, tempi di conservazione e diritti. Questa spiegazione riguarda soltanto l’anteprima locale.</p></details>
+        <div class="form-submit"><button class="pill-link" type="submit" disabled>Prepara la richiesta <span class="thread-icon" aria-hidden="true"></span></button><p id="form-local-hint">Prepari una copia locale da scaricare: nessun dato viene ancora inviato all’associazione.</p></div>
+        <noscript><p class="form-notice">Per preparare la richiesta in questa anteprima serve JavaScript. Nessun dato viene inviato.</p></noscript>
+      </form>
+      <section id="membership-result" class="membership-result" aria-labelledby="result-title" hidden><span class="overline">IL TUO PRIMO FILO</span><h2 id="result-title" tabindex="-1">Richiesta preparata,<br><em>non ancora inviata.</em></h2><p>Il servizio di ricezione non è ancora collegato. Puoi salvare una copia sul tuo dispositivo; l’associazione non ha ricevuto questa richiesta.</p><dl id="membership-summary"></dl><div class="result-actions"><a class="pill-link" id="download-request" download="richiesta-iscrizione-psicodromica-aps.txt">Scarica la richiesta <span class="thread-icon" aria-hidden="true"></span></a><button class="text-action" type="button" id="edit-request">Modifica i dati</button></div></section>
+    </section>
+  </main>
+  <div class="contact-line footer-thread" aria-hidden="true"><svg viewBox="0 0 1200 100" preserveAspectRatio="none"><path d="M0 60H400c50 0 50-40 100-40s50 70 100 70 50-50 100-50H1200"/></svg></div>
+  <footer><a class="wordmark" href="il-filo-animato.html#associazione"><img src="assets/logo-psicodromica.svg" alt="" width="40" height="30"><span>psicodromica<sup class="aps">APS</sup></span></a><a class="site-credit" href="https://alessialobascio.it">realizzato con ❤️ da Alessia Lobascio</a><a class="footer-home" href="il-filo-animato.html#inizio">Ricomincia dal filo <span class="thread-icon" aria-hidden="true"></span></a><p class="footer-description">Associazione di promozione sociale - Divulgazione e confronto, non consulenza clinica. I contenuti non sostituiscono il parere di un professionista.</p><small>© <span id="year">2026</span> Psicodromica<sup class="aps">APS</sup></small></footer>
+  <dialog aria-labelledby="dialog-title"><div class="dialog-header"><span>PSICODROMICA<sup class="aps">APS</sup> / IL VIAGGIO CONTINUA</span><button class="close-dialog" aria-label="Chiudi">×</button></div><div id="dialog-content"></div></dialog>
+</body>
+</html>
