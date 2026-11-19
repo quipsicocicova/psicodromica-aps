@@ -48,3 +48,18 @@
   .narrative .scene{left:0;top:0;width:100%}
   .path-grid>a>:not(.path-thread){opacity:1!important;transform:none!important;clip-path:none!important}
 }
+/* Mobile: attach a tightly framed illustration to its copy, not the screen bottom. */
+@media(max-width:760px){
+  .narrative .scene-content{padding-top:138px}
+  .narrative .drawing{left:3%;right:auto;width:94%;top:var(--mobile-art-top,350px);height:var(--mobile-art-height,280px);bottom:auto}
+  .narrative .drawing>svg{overflow:hidden}
+  .narrative .art-halo{display:none} /* The enlarged ambient disc must not become a clipped rectangle. */
+  .narrative .drawing-footer{top:calc(100% + 6px);bottom:auto}
+}
+@media(max-width:760px) and (max-height:740px){
+  .narrative .scene-content{padding-top:120px}
+  .narrative .chapter-label{margin-bottom:8px}
+  .narrative .scene[data-scene="0"] h1{font-size:clamp(24px,7vw,32px)}
+  .narrative .brain-phrases{margin-top:10px;min-height:0}
+  .narrative .brain-phrases p{margin-bottom:5px}
+}

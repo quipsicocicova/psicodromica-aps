@@ -14,6 +14,9 @@
   const scenes = [...story.querySelectorAll('.scene')];
   const buttons = [...story.querySelectorAll('[data-chapter]')];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const mobile = matchMedia('(max-width: 760px)');
+  const art = story.querySelector('#line-art');
+  const mobileLayout = { textBottoms: Array(8).fill(300), width: 0, controlsTop: 0 };
   const line = story.querySelector('#morph-line');
   const tip = story.querySelector('#line-tip');
   const bore = story.querySelector('#gear-bore');
@@ -46,8 +49,15 @@
   const captions = ['IL PUNTO DI PARTENZA', 'ALLARGARE LO SGUARDO', 'PERSONE / RELAZIONI', 'LE CONDIZIONI IN CUI LA VITA PRENDE FORMA', 'DISCIPLINE ALLO STESSO TAVOLO', 'LE DOMANDE CHE NASCONO DALL’INCONTRO', 'TANTE PROSPETTIVE, UN NUOVO INCASTRO', ''];
   const clamp = (v, lo = 0, hi = 1) => Math.max(lo, Math.min(hi, v));
   const ease = t => t * t * (3 - 2 * t);
+  const boundsOf = points => points.reduce((b, [x, y]) => {
+    b.minX = Math.min(b.minX, x); b.maxX = Math.max(b.maxX, x);
+    b.minY = Math.min(b.minY, y); b.maxY = Math.max(b.maxY, y);
+    return b;
+  }, { minX: Infinity, minY: Infinity, maxX: -Infinity, maxY: -Infinity });
+  const brainBounds = boundsOf(samples[0]), gearBounds = boundsOf(samples[6]);
   let chapter = -1, beat = 0, manualBeat = 0, scheduled = false;
   let lastPosition = -1, lastFormation = -1, scrollRange = 1, storyTop = 0;
+  let lastMobileFrame = '';
   let introProgress = reduced.matches ? 1 : 0, introFrame, introStarted;
   let spinPlayed = false, spinAnimation, auraAnimation, entered = false;
   let logoProgress = 0, lastLogoProgress = -1, logoFrame;
@@ -118,9 +128,70 @@
     sparkAnimations.forEach(animation => animation.cancel()); sparkAnimations = [];
     if (sparkLayer.dataset.state !== 'idle') sparkLayer.dataset.state = 'idle';
   }
+  function measureMobile() {
+    if (!mobile.matches) {
+      lastMobileFrame = '';
+      art.setAttribute('viewBox', '0 0 760 640');
+      art.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      story.style.removeProperty('--mobile-art-top');
+      story.style.removeProperty('--mobile-art-height');
+      return;
+    }
+    // Read copy only on resize, font readiness or static chapter changes, never
+    // on animation frames. Measure the last visible child, not a full-height box.
+    scenes.forEach((scene, index) => {
+      if (reduced.matches && !scene.classList.contains('is-current')) return;
+      const children = [...scene.querySelector('.scene-content').children];
+      const last = children.filter(child => child.getClientRects().length).at(-1);
+      if (last) mobileLayout.textBottoms[index] = last.getBoundingClientRect().bottom - scene.getBoundingClientRect().top;
+    });
+    mobileLayout.width = sticky.clientWidth * .94;
+    mobileLayout.controlsTop = story.querySelector('.story-controls').getBoundingClientRect().top - sticky.getBoundingClientRect().top;
+    art.setAttribute('preserveAspectRatio', 'xMidYMin meet');
+  }
+  function layoutMobileArt(position, base, t, bounds) {
+    if (!mobile.matches) return;
+    if (position < .001) {
+      // Do not zoom a zero-height intro line: keep its eventual brain framing.
+      bounds = { ...brainBounds };
+    }
+    if (position >= 1 && position <= 3) {
+      // Make room for the symbol clouds before they fade in, smoothly and in
+      // reverse too; no sudden reframing when their opacity crosses zero.
+      const cloudTop = position < 1.6 ? 205 + (48 - 205) * ease(clamp((position - 1) / .6))
+        : position > 2.4 ? 48 + (157 - 48) * ease(clamp((position - 2.4) / .6)) : 48;
+      bounds.minY = Math.min(bounds.minY, cloudTop);
+    }
+    if (position > 6) {
+      const reveal = ease(clamp((position - 6) / .85));
+      // Include both original logo paths, not only the animated half-gear.
+      bounds.minX = Math.min(bounds.minX, gearBounds.minX + (140.9 - gearBounds.minX) * reveal);
+      bounds.maxX = Math.max(bounds.maxX, gearBounds.maxX + (627.1 - gearBounds.maxX) * reveal);
+      bounds.minY = Math.min(bounds.minY, gearBounds.minY + (133.42 - gearBounds.minY) * reveal);
+      bounds.maxY = Math.max(bounds.maxY, gearBounds.maxY + (502.58 - gearBounds.maxY) * reveal);
+    }
+    const padding = 24;
+    const width = bounds.maxX - bounds.minX + padding * 2;
+    const height = bounds.maxY - bounds.minY + padding * 2;
+    const copyBottom = mobileLayout.textBottoms[base] + (mobileLayout.textBottoms[base + 1] - mobileLayout.textBottoms[base]) * t;
+    const top = copyBottom + 12;
+    const captionRoom = innerHeight <= 740 ? 10 : 44;
+    const available = Math.max(60, mobileLayout.controlsTop - captionRoom - top);
+    const canvasHeight = Math.min(available, mobileLayout.width * height / width);
+    const viewBox = `${(bounds.minX - padding).toFixed(2)} ${(bounds.minY - padding).toFixed(2)} ${width.toFixed(2)} ${height.toFixed(2)}`;
+    const frame = `${viewBox}/${top.toFixed(2)}/${canvasHeight.toFixed(2)}`;
+    if (frame === lastMobileFrame) return;
+    lastMobileFrame = frame;
+    story.style.setProperty('--mobile-art-top', `${top.toFixed(2)}px`);
+    story.style.setProperty('--mobile-art-height', `${canvasHeight.toFixed(2)}px`);
+    // Bounds come from the points already being interpolated, not SVG curve
+    // sampling. Desktop geometry, timings and native scrolling stay untouched.
+    art.setAttribute('viewBox', viewBox);
+  }
   function measure() {
     scrollRange = Math.max(1, story.offsetHeight - sticky.offsetHeight);
     storyTop = story.offsetTop;
+    measureMobile(); lastPosition = -1;
   }
   function finishIntro() {
     cancelAnimationFrame(introFrame);
@@ -137,6 +208,7 @@
     const to = formation < 1 ? samples[0] : samples[base + 1];
     const blend = formation < 1 ? formation : t;
     const parts = new Array(count);
+    const bounds = mobile.matches ? { minX: Infinity, minY: Infinity, maxX: -Infinity, maxY: -Infinity } : null;
     let x, y;
     for (let i = 0; i < count; i++) {
       x = from[i][0] + (to[i][0] - from[i][0]) * blend;
@@ -145,8 +217,13 @@
         x += (geometry.logo.gear[i][0] - x) * morph;
         y += (geometry.logo.gear[i][1] - y) * morph;
       }
+      if (bounds) {
+        bounds.minX = Math.min(bounds.minX, x); bounds.maxX = Math.max(bounds.maxX, x);
+        bounds.minY = Math.min(bounds.minY, y); bounds.maxY = Math.max(bounds.maxY, y);
+      }
       parts[i] = `${i ? 'L' : 'M'}${x.toFixed(2)} ${y.toFixed(2)}`;
     }
+    if (bounds) layoutMobileArt(position, base, t, bounds);
     line.setAttribute('d', parts.join(' '));
     tip.setAttribute('cx', x); tip.setAttribute('cy', y);
     const gearProgress = ease(clamp(position - 5));
@@ -236,6 +313,7 @@
     caption.textContent = captions[index]; caption.hidden = index === 7;
     announcement.textContent = `Capitolo ${index + 1} di 8: ${titles[index]}`;
     story.dataset.chapter = String(index);
+    if (reduced.matches && mobile.matches) measureMobile();
   }
   function updateHeader() {
     const isEntered = scrollY >= storyTop + story.offsetHeight - header.offsetHeight - 40;
@@ -313,4 +391,5 @@
     touchStart = null;
   }, { passive: true });
   measure(); startIntro(); render();
+  document.fonts.ready.then(() => { measure(); schedule(); });
 })();

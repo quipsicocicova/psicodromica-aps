@@ -97,6 +97,8 @@ Playwright/Chromium sono necessari soltanto durante sviluppo/generazione. L’av
 
 Le testate interne includono il simbolo originale accanto al nome. L’immagine HTML resta come fallback senza JavaScript; `theme.js` riusa i due vettori precalcolati in un SVG `currentColor`, leggibile sul fondo chiaro e adattato alla palette. Non sono necessarie nuove richieste di rete. Il layout statico del racconto è largo un solo viewport, così il payoff resta leggibile anche con movimento ridotto.
 
+Su mobile il disegno segue l’altezza reale del testo di ogni capitolo, invece di restare ancorato al fondo dello schermo. L’inquadratura usa i punti già interpolati e lascia spazio a nuvole, logo, didascalie e comandi: figure più grandi, senza vuoto tra frase e illustrazione. Le letture del layout avvengono solo al resize, al caricamento dei font o al cambio di capitolo statico, non a ogni fotogramma. Desktop, geometrie canoniche e scorrimento nativo restano invariati.
+
 ## Test
 
 Con il server acceso:
@@ -108,6 +110,7 @@ npm test
 ```
 
 - `startup.test.mjs`: avvio CPU 4× e durata massima dei task.
+- `mobile-story.test.mjs`: disegni ingranditi subito sotto il testo, otto capitoli su sette viewport, nuvole/logo completi, nessuna sovrapposizione con i comandi, ripristino dell’inquadratura desktop, movimento ridotto e zero misurazioni delle curve SVG.
 - `test.mjs`: testi, otto forme, transizioni, navigazione, reversibilità, sette viewport, nove pagine, APS, font, foto e footer.
 - `community.test.mjs`: manifesto, CTA About, enfasi solo su «tu», validazione/sintesi/download sicuri e nessun invio o salvataggio del modulo.
 - `effects.test.mjs`: formazione, tre nuvole, medicina, finestre temporizzate, sedie semicircolari, hash dell’ingranaggio approvato, alone/scintille, header/replay e movimento ridotto.
