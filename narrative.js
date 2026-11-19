@@ -17,6 +17,10 @@
   const mobile = matchMedia('(max-width: 760px)');
   const art = story.querySelector('#line-art');
   const mobileLayout = { textBottoms: Array(8).fill(300), width: 0, controlsTop: 0 };
+  // Optical spacing per chapter: retain brain/table, lower the flatter figures,
+  // and reserve the complete light/spark envelope around the closing gear/logo.
+  const mobilePadding = [24, 24, 24, 24, 24, 24, 90, 112];
+  const mobileDrop = [0, .18, .14, .14, 0, .18, 0, 0];
   const line = story.querySelector('#morph-line');
   const tip = story.querySelector('#line-tip');
   const bore = story.querySelector('#gear-bore');
@@ -170,14 +174,16 @@
       bounds.minY = Math.min(bounds.minY, gearBounds.minY + (133.42 - gearBounds.minY) * reveal);
       bounds.maxY = Math.max(bounds.maxY, gearBounds.maxY + (502.58 - gearBounds.maxY) * reveal);
     }
-    const padding = 24;
+    const padding = mobilePadding[base] + (mobilePadding[base + 1] - mobilePadding[base]) * t;
     const width = bounds.maxX - bounds.minX + padding * 2;
     const height = bounds.maxY - bounds.minY + padding * 2;
     const copyBottom = mobileLayout.textBottoms[base] + (mobileLayout.textBottoms[base + 1] - mobileLayout.textBottoms[base]) * t;
-    const top = copyBottom + 12;
+    let top = copyBottom + 12;
     const captionRoom = innerHeight <= 740 ? 10 : 44;
     const available = Math.max(60, mobileLayout.controlsTop - captionRoom - top);
     const canvasHeight = Math.min(available, mobileLayout.width * height / width);
+    const drop = mobileDrop[base] + (mobileDrop[base + 1] - mobileDrop[base]) * t;
+    top += Math.max(0, available - canvasHeight) * drop;
     const viewBox = `${(bounds.minX - padding).toFixed(2)} ${(bounds.minY - padding).toFixed(2)} ${width.toFixed(2)} ${height.toFixed(2)}`;
     const frame = `${viewBox}/${top.toFixed(2)}/${canvasHeight.toFixed(2)}`;
     if (frame === lastMobileFrame) return;

@@ -18,7 +18,13 @@ try {
     await page.evaluate(i => { const s = document.querySelector('.story'); scrollTo({ top: s.offsetTop + (s.offsetHeight - s.querySelector('.story-sticky').offsetHeight) * i / 7, behavior: 'instant' }); }, i);
     await page.waitForFunction(i => document.querySelector('.story').dataset.chapter === String(i), i);
     await settle();
-    if (i === 7) await page.waitForFunction(() => document.querySelector('.story').dataset.logoState === 'complete');
+    if (i === 7) {
+      if (page.viewportSize().width === 390) {
+        await page.waitForFunction(() => Number(getComputedStyle(document.querySelector('#gear-aura')).opacity) > .65);
+        await page.screenshot({ path: 'artifacts/mobile-story-gear-glow.png' });
+      }
+      await page.waitForFunction(() => document.querySelector('.story').dataset.logoState === 'complete');
+    }
   }
   const copyBottom = () => page.locator('.scene.is-current .scene-content').evaluate(e => [...e.children].filter(e => e.getClientRects().length).at(-1).getBoundingClientRect().bottom);
   for (const [width, height] of [[390,844],[320,568],[360,640],[375,667],[375,812],[430,932],[760,900]]) {
@@ -34,7 +40,19 @@ try {
       }
       const gap = art.y - await copyBottom();
       const controls = await page.locator('.story-controls').boundingBox();
-      assert.ok(gap >= 10 && gap <= 72, `${width}×${height}, chapter ${i}: text→art gap ${gap.toFixed(1)}px`);
+      const maxGap = [0,4].includes(i) ? 72 : 160;
+      assert.ok(gap >= 10 && gap <= maxGap, `${width}×${height}, chapter ${i}: text→art gap ${gap.toFixed(1)}px`);
+      if (width === 390 && height === 844) {
+        const lowerGaps = { 1: 60, 2: 45, 3: 55, 5: 60 };
+        if (i in lowerGaps) assert.ok(gap >= lowerGaps[i], `Chapter ${i} needs breathing room below its copy, not top-hugging placement`);
+        if (i >= 6) assert.ok(art.width <= width * .7, `Chapter ${i}: gear and final logo should be smaller`);
+      }
+      if (i >= 6) {
+        assert.ok(await page.locator('#line-art').evaluate(svg => {
+          const v = svg.viewBox.baseVal, halo = svg.querySelector('#gear-aura').getBBox();
+          return halo.x >= v.x + 8 && halo.y >= v.y + 8 && halo.x + halo.width <= v.x + v.width - 8 && halo.y + halo.height <= v.y + v.height - 8;
+        }), 'The entire illumination disc must fit inside the mobile SVG, not be cropped at its edges');
+      }
       assert.ok(art.y + art.height < controls.y - 8, `${width}, chapter ${i}: illustration clears the controls`);
       assert.ok(art.x >= 0 && art.x + art.width <= width + 1, `${width}, chapter ${i}: full figure remains on screen`);
       if (i === 0) {
